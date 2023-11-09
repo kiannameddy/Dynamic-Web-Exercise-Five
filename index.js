@@ -17,10 +17,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const indexRoute = require('./routes/index');
-// const singlePostroute = require('./routes/singlePost');
+const singlePostRoute = require('./routes/singlePost');
 // const createPostRoute = require('./routes/CreatePost');
 
 app.use("/", indexRoute);
+app.use("/post", singlePostRoute);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
