@@ -1,26 +1,22 @@
 const express = require('express');
-const { getFirestore } = require('firebase/firestore');
 const router = express.Router();
-//Initialize Firestore Database
 const firestore = require("firebase/firestore");
-//Create a referense to the database
 const db = firestore.getFirestore(); 
 
-//define index route - get all posts
 router.get("/", (req, res) => {
-    const postsQuery = firestore.getDocs(firestore.collection(db, "posts"));
-    const postsArray = [];
-
-    postsQuery.then((response) => {
+    const postQuery = firestore.getDocs(firestore.collection(db, "posts"));
+    const postsArray  = [];
+    postQuery
+        .then((response) => {
             response.forEach((post) => {
-                postsArray.push({id: post.id, ...post.data() });
+                postsArray.push({id: post.id, ...post.data()});
             });
-            res.send(postsArray); 
+            res.send(postsArray);
         })
-            .catch((error) => {
-                console.log(error);
-                return res.send(error);
-            });
+        .catch((error) => {
+            console.log(error);
+            return res.send(error);
+    });
 });
 
-module.exports = router; 
+module.exports = router;

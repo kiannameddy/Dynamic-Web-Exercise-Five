@@ -1,6 +1,5 @@
 const express = require('express'); 
 const app = express();
-const router = express.Router();
 const firebase = require("firebase/app");
 const port = 4000;
 
@@ -17,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 
 const indexRoute = require('./routes/index');
 const singlePostRoute = require('./routes/singlePost');
-const createPostRoute = require('./routes/CreatePost');
+const createPostRoute = require('./routes/createPost');
 
 app.use("/", indexRoute);
 app.use("/post", singlePostRoute);
